@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <style>
+        .col{
+            margin-right: 2%;
+            background-color: beige;
+            text-align: center;
+        }
+        .aa{
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>FLASHCARD Application</h1>
+    </header>
+    <br>
+    <main>
+        <p>Welcome {{NAME}}</p>
+        <br><br>
+        <div class="container">
+            <div class="row">  
+                {% for dec in deck%}
+                <div class="col">
+                    <a href="/home/{{NAME}}/{{dec["deck_id"]}}/0">
+                    Deck Name : {{dec["deck_name"]}}
+                    <br>
+                    </a>
+                    <br><br>
+                    <a href="/delete/{{NAME}}/{{dec["deck_id"]}}" class="aa">Delete this deck</a>
+                    <br><br>
+                    <a href="/{{NAME}}/update/{{dec["deck_id"]}}/1" class="aa">Update this Deck</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <a href="/create/{{NAME}}">Add new Deck</a>
+        <br><br>
+        <a href="/">Log Out</a>
+    </main>
+    <br><br>
+    <footer>
+        <p>By Suhail</p>
+    </footer>
+</body>
+</html>

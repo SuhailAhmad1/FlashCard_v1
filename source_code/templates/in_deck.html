@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <style>
+        body { font-family: sans-serif; }
+
+        .scene {
+            width: 250px;
+            height: 250px;
+            border: 1px solid black;
+            margin: 40px 0;
+            perspective: 600px;
+            margin: auto;
+            display: block;
+            align-self: center;
+            text-align: center;
+        }
+
+        .card {
+            width: 100%;
+            height: 100%;
+            transition: transform 1s;
+            transform-style: preserve-3d;
+            cursor: pointer;
+            position: relative;
+            margin: auto;
+            display: block;
+        }
+
+        .card.is-flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card__face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            padding-top: 50px;
+            text-align: center;
+            font-weight: bold;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+        .card__face--back {
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+<body>
+    <h1>Flashcard</h1>
+    <br><br>
+    <div class="scene">
+        <div class="card">
+            <div class="card__face card__face--front">{{question}}</div>
+            <div class="card__face card__face--back">
+                <p>{{question}}</p>
+                <p>{{answer}}</p>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    {% if q_n == 5 %}
+    <a href="/succ_msg/{{user_i}}">Return Home</a>
+	{% else %}
+    <a href="/home/{{user_i}}/{{deck_id}}/{{q_n}}">Next</a>
+	{% endif %}
+    <script>
+        var card = document.querySelector('.card');
+        card.addEventListener( 'click', function() {
+        card.classList.toggle('is-flipped');
+        });
+    </script>
+</body>
+</html>
